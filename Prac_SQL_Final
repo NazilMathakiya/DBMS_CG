@@ -1,0 +1,256 @@
+-- Question 1: Display all students from the Students table.
+SELECT * FROM Students;
+
+
+-- Question 2: Display the names of all students who belong to the Computer Science department.
+SELECT name
+FROM Students
+WHERE department = 'Computer Science';
+
+
+-- Question 3: Find all students who live in Ahmedabad.
+SELECT *
+FROM Students
+WHERE city = 'Ahmedabad';
+
+
+-- Question 4: Display all courses having more than 3 credits.
+SELECT *
+FROM Courses
+WHERE credits > 3;
+
+
+-- Question 5: Find students who were admitted in 2024.
+SELECT *
+FROM Students
+WHERE admission_year = 2024;
+
+
+-- Question 6: Display all enrollments where the marks are greater than 70.
+SELECT *
+FROM Enrollments
+WHERE marks > 70;
+
+
+-- Question 7: Find the highest marks obtained in the Enrollments table.
+SELECT MAX(marks)
+FROM Enrollments;
+
+
+-- Question 8: Find the lowest marks obtained in the Enrollments table.
+SELECT MIN(marks)
+FROM Enrollments;
+
+
+-- Question 9: Find the average marks of all students.
+SELECT AVG(marks)
+FROM Enrollments;
+
+
+-- Question 10: Find the total number of students.
+SELECT COUNT(*)
+FROM Students;
+
+
+-- Question 11: Find the total number of courses.
+SELECT COUNT(*)
+FROM Courses;
+
+
+-- Question 12: Find the number of students in each department.
+SELECT department, COUNT(*)
+FROM Students
+GROUP BY department;
+
+
+-- Question 13: Find the average marks obtained in each course.
+SELECT course_id, AVG(marks)
+FROM Enrollments
+GROUP BY course_id;
+
+
+-- Question 14: Find the number of students enrolled in each course.
+SELECT course_id, COUNT(student_id)
+FROM Enrollments
+GROUP BY course_id;
+
+
+-- Question 15: Find students who scored between 60 and 80 marks.
+SELECT *
+FROM Enrollments
+WHERE marks BETWEEN 60 AND 80;
+
+
+-- Question 16: Display the student name, course name, and marks for every enrollment.
+SELECT Students.name, Courses.course_name, Enrollments.marks
+FROM Enrollments
+JOIN Students ON Enrollments.student_id = Students.student_id
+JOIN Courses ON Enrollments.course_id = Courses.course_id;
+
+
+-- Question 17: Find all students who have scored more than 80 marks.
+SELECT Students.name
+FROM Students
+JOIN Enrollments ON Students.student_id = Enrollments.student_id
+WHERE Enrollments.marks > 80;
+
+
+-- Question 18: Find students who have scored less than 40 marks in any course.
+SELECT Students.name
+FROM Students
+JOIN Enrollments ON Students.student_id = Enrollments.student_id
+WHERE Enrollments.marks < 40;
+
+
+-- Question 19: Find students who have enrolled in more than 2 courses.
+SELECT student_id, COUNT(course_id)
+FROM Enrollments
+GROUP BY student_id
+HAVING COUNT(course_id) > 2;
+
+
+-- Question 20: Find courses having more than 3 enrolled students.
+SELECT course_id, COUNT(student_id)
+FROM Enrollments
+GROUP BY course_id
+HAVING COUNT(student_id) > 3;
+
+
+-- Question 21: Find the highest marks obtained in each course.
+SELECT course_id, MAX(marks)
+FROM Enrollments
+GROUP BY course_id;
+
+
+-- Question 22: Find the lowest marks obtained in each course.
+SELECT course_id, MIN(marks)
+FROM Enrollments
+GROUP BY course_id;
+
+
+-- Question 23: Find the average marks of each student.
+SELECT student_id, AVG(marks)
+FROM Enrollments
+GROUP BY student_id;
+
+
+-- Question 24: Display students whose average marks are greater than 70.
+SELECT student_id, AVG(marks)
+FROM Enrollments
+GROUP BY student_id
+HAVING AVG(marks) > 70;
+
+
+-- Question 25: Find students who have scored above 80 in at least one course.
+SELECT DISTINCT student_id
+FROM Enrollments
+WHERE marks > 80;
+
+
+-- Question 26: Find the total marks obtained by each student.
+SELECT student_id, SUM(marks)
+FROM Enrollments
+GROUP BY student_id;
+
+
+-- Question 27: Find the department having the highest number of students.
+SELECT department, COUNT(*) AS student_count
+FROM Students
+GROUP BY department
+ORDER BY student_count DESC
+LIMIT 1;
+
+
+-- Question 28: Find the course having the highest number of enrollments.
+SELECT course_id, COUNT(*) AS enrollment_count
+FROM Enrollments
+GROUP BY course_id
+ORDER BY enrollment_count DESC
+LIMIT 1;
+
+
+-- Question 29: Find students who are not enrolled in any course.
+SELECT Students.*
+FROM Students
+LEFT JOIN Enrollments ON Students.student_id = Enrollments.student_id
+WHERE Enrollments.student_id IS NULL;
+
+
+-- Question 30: Display Student Name, Course Name, Marks and Result.
+SELECT Students.name, Courses.course_name, Enrollments.marks,
+       CASE
+           WHEN Enrollments.marks >= 40 THEN 'Pass'
+           ELSE 'Fail'
+       END AS Result
+FROM Enrollments
+JOIN Students ON Enrollments.student_id = Students.student_id
+JOIN Courses ON Enrollments.course_id = Courses.course_id;
+
+
+-- Question 31: Find the second-highest marks obtained in the Enrollments table.
+SELECT MAX(marks)
+FROM Enrollments
+WHERE marks < (SELECT MAX(marks) FROM Enrollments);
+
+
+-- Question 32: Find the student(s) who obtained the highest marks in the entire database.
+SELECT Students.name, Enrollments.marks
+FROM Students
+JOIN Enrollments ON Students.student_id = Enrollments.student_id
+WHERE Enrollments.marks = (SELECT MAX(marks) FROM Enrollments);
+
+
+-- Question 33: Find the course with the highest average marks.
+SELECT course_id, AVG(marks) AS average_marks
+FROM Enrollments
+GROUP BY course_id
+ORDER BY average_marks DESC
+LIMIT 1;
+
+
+-- Question 34: Find students whose marks are greater than the overall average marks.
+SELECT DISTINCT student_id
+FROM Enrollments
+WHERE marks > (SELECT AVG(marks) FROM Enrollments);
+
+
+-- Question 35: Find students who have enrolled in at least 2 courses and have an average mark greater than 70.
+SELECT student_id
+FROM Enrollments
+GROUP BY student_id
+HAVING COUNT(course_id) >= 2
+AND AVG(marks) > 70;
+
+
+-- Question 36: Find students who have never scored below 50 in any course.
+SELECT student_id
+FROM Enrollments
+GROUP BY student_id
+HAVING MIN(marks) >= 50;
+
+
+-- Question 37: Find courses where the average marks are greater than 70.
+SELECT course_id, AVG(marks)
+FROM Enrollments
+GROUP BY course_id
+HAVING AVG(marks) > 70;
+
+
+-- Question 38: Find the latest enrollment date for each student.
+SELECT student_id, MAX(enrollment_date)
+FROM Enrollments
+GROUP BY student_id;
+
+
+-- Question 39: Find students who enrolled in a course during 2025.
+SELECT DISTINCT student_id
+FROM Enrollments
+WHERE YEAR(enrollment_date) = 2025;
+
+
+-- Question 40: Find students who scored above 80 in at least two different courses.
+SELECT student_id
+FROM Enrollments
+WHERE marks > 80
+GROUP BY student_id
+HAVING COUNT(DISTINCT course_id) >= 2;
