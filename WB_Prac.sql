@@ -3,7 +3,7 @@ CREATE TABLE Students(
     student_id INT PRIMARY KEY,
     name VARCHAR(50),
     department VARCHAR(53),
-    city VARCHAR(53),
+    city VARCHAR(54),
     admission_year INT
 );
 
