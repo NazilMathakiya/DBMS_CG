@@ -279,4 +279,3 @@ FROM Enrollments
 WHERE marks > 80
 GROUP BY student_id
 HAVING COUNT(DISTINCT course_id) >= 2;
-
