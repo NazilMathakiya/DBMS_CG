@@ -2,7 +2,7 @@ use practice;
 CREATE TABLE Students(
     student_id INT PRIMARY KEY,
     name VARCHAR(50),
-    department VARCHAR(52),
+    department VARCHAR(53),
     city VARCHAR(50),
     admission_year INT
 );
