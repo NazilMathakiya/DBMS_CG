@@ -7,7 +7,7 @@ CREATE TABLE orders (
 INSERT INTO orders (customer_name, amount, year)
 VALUES
 ('Motu', 5000, 2026),
-('Patlu', 8000, 2026),
+('Patlu', 8005, 2026),
 ('Raju', 3002, 2025),
 ('Shyam', 7001, 2023);   
 
