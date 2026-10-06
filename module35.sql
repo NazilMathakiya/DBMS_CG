@@ -23,4 +23,8 @@ VALUES
 
 SELECT * FROM students;
 
-
+SELECT
+    student_name,
+    marks,
+    AVG(marks) OVER() AS average_marks
+FROM students;
