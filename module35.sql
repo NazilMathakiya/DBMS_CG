@@ -28,3 +28,20 @@ SELECT
     marks,
     AVG(marks) OVER() AS average_marks
 FROM students;
+
+SELECT
+    student_name,
+    marks,
+    ROW_NUMBER() OVER(
+        ORDER BY marks DESC
+    ) AS row_number
+FROM students;
+
+select 
+	student_name,
+    marks,
+	dense_rank() over(
+	order by marks desc
+	) as rank
+	from students;
+
