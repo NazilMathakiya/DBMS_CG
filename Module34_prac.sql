@@ -22,6 +22,6 @@ INSERT INTO students (student_name, course, marks)
 VALUES
 ('Motu', 'Python', 60),
 ('Patlu', 'Python', 56),
-('Raju', 'MERN', 86),
+('Raju', 'MERN', 76),
 ('Shyam', 'MERN', 23);
 
