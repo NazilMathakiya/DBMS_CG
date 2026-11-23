@@ -23,5 +23,6 @@ VALUES
 ('Motu', 'Python', 71),
 ('Patlu', 'Python', 56),
 ('Raju', 'MERN', 76),
-('Shyam', 'MERN', 23);
+('Shyam', 'MERN', 24
+);
 
