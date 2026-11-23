@@ -20,7 +20,7 @@ CREATE TABLE students (
 
 INSERT INTO students (student_name, course, marks)
 VALUES
-('Motu', 'Python', 71),
+('Motu', 'Python', 22),
 ('Patlu', 'Python', 56),
 ('Raju', 'MERN', 32),
 ('Shyam', 'MERN', 13
